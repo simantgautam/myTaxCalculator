@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Taxable HRA Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      #heading {
+        background-color: #3b9ac6;
+        padding: 10px;
+        color: white;
+        text-align: center;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type="text"],
+      select {
+        padding: 5px;
+        width: 250px;
+        margin-bottom: 20px;
+      }
+
+      .checkbox-label {
+        display: flex; /* Aligns checkbox and label in a row */
+        align-items: center; /* Vertically aligns checkbox and label */
+        margin-bottom: 10px;
+      }
+
+      .checkbox-label input[type="checkbox"] {
+        margin-right: 5px; /* Adds space between checkbox and label */
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      .main {
+        width: 300px;
+        margin: 30px auto;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding: 30px;
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="heading">
+      <h2>HOUSE RENT ALLOWANCE</h2>
+    </div>
+
+    <div class="main">
+      <form id="hraForm">
+        <label for="basicSalary">Basic Salary:</label>
+        <input
+          type="text"
+          id="basicSalary"
+          placeholder="Enter basic salary"
+          required
+        />
+
+        <!-- <label for="da">DA forming part of salary:</label>
+        <input type="text" id="da" placeholder="Enter DA amount" />
+
+        <label for="commission"
+          >Commission (as % of turnover achieved by the employee):</label
+        >
+        <input
+          type="text"
+          id="commission"
+          placeholder="Enter commission percentage"
+        /> -->
+
+        <label for="hraReceived">HRA Received:</label>
+        <input type="text" id="hraReceived" placeholder="Enter HRA received" />
+
+        <label for="rentPaid">Rent Paid:</label>
+        <input type="text" id="rentPaid" placeholder="Enter rent paid" />
+
+        <div class="checkbox-label">
+          <input type="checkbox" id="isMetro" />
+          <label for="isMetro">Residing in a metro city</label>
+        </div>
+
+        <button type="button" onclick="calculateTaxableHRA()">Calculate</button>
+      </form>
+
+      <div id="result" style="display: none">
+        <h3>Taxable House Rent Allowance (HRA):</h3>
+        <p id="taxableHRA"></p>
+      </div>
+    </div>
+
+    <script>
+      function calculateTaxableHRA() {
+        var basicSalary = parseFloat(
+          document.getElementById("basicSalary").value
+        );
+        // var da = parseFloat(document.getElementById("da").value) || 0;
+        // var commission =
+        //   parseFloat(document.getElementById("commission").value) || 0;
+        var hraReceived = parseFloat(
+          document.getElementById("hraReceived").value
+        );
+        var rentPaid = parseFloat(document.getElementById("rentPaid").value);
+        var isMetro = document.getElementById("isMetro").checked;
+
+        if (isNaN(basicSalary) || isNaN(hraReceived) || isNaN(rentPaid)) {
+          alert(
+            "Please enter valid numeric values for salary, HRA, and rent paid."
+          );
+          return;
+        }
+
+        if (isMetro) var totalSalary = basicSalary / 2;
+        else {
+          var totalSalary = (basicSalary / 5) * 2;
+          console.log(totalSalary);
+        }
+
+        var hraExempted = Math.min(
+          calculateHRAExemption(hraReceived, rentPaid, isMetro),
+          totalSalary
+        );
+        var taxable = Math.abs(hraReceived - hraExempted);
+
+        var taxableHRA = Math.min(totalSalary, taxable);
+
+        document.getElementById("taxableHRA").innerHTML =
+          "Taxable HRA: " + taxableHRA.toFixed(2);
+        document.getElementById("result").style.display = "block";
+      }
+
+      function calculateHRAExemption(hraReceived, rentPaid, isMetro) {
+        var exemptionLimit = isMetro ? 0.5 : 0.4;
+        // var eligibleAmount = rentPaid * 12 - hraReceived * 0.1;
+
+        return Math.min(exemptionLimit * rentPaid * 12);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Advance Tax Calculator</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="heading2">
+      <h2>ADVANCE TAX CALCULATOR</h2>
+    </div>
+    <div class="calculator">
+      <label for="section115bac"
+        >Opting for taxation under Section 115BAC?</label
+      >
+      <select id="section115bac">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <label for="netTaxableIncome">Net Taxable Income:</label>
+      <input type="number" id="netTaxableIncome" />
+
+      <button onclick="calculateTax()">Calculate</button>
+
+      <div class="results">
+        <label>Income Tax:</label>
+        <span id="incomeTax"></span>
+
+        <label>Surcharge:</label>
+        <span id="surcharge"></span>
+
+        <label>Education Cess:</label>
+        <span id="educationCess"></span>
+
+        <label>Secondary and Higher Education Cess:</label>
+        <span id="secondaryCess"></span>
+
+        <label>Total Tax Liability:</label>
+        <span id="totalTaxLiability"></span>
+
+        <label>Relief:</label>
+        <span id="relief"></span>
+
+        <label>TDS/TCS/MAT Credit Utilized:</label>
+        <input type="number" id="creditUtilized" />
+
+        <label>Assessed Tax:</label>
+        <span id="assessedTax"></span>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+.calculator {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  width: 95%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+#heading2 {
+  background-color: #3b9ac6;
+  padding: 10px;
+  color: white;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.results {
+  margin-top: 10px;
+}
+
+.results label {
+  font-weight: bold;
+}
+
+.results span {
+  display: inline-block;
+  margin-bottom: 5px;
+}
