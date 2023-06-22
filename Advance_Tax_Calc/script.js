@@ -71,4 +71,14 @@ function calculateTax() {
     document.getElementById("relief").textContent = relief.toFixed(2);
     document.getElementById("assessedTax").textContent = assessedTax.toFixed(2);
   }
+
+  var first = document.getElementById("first");
+  var second = document.getElementById("second");
+  var third = document.getElementById("third");
+  var forth = document.getElementById("forth");
+
+  first.textContent = netTaxableIncome * 0.15;
+  second.textContent = netTaxableIncome * 0.3;
+  third.textContent = netTaxableIncome * 0.3;
+  forth.textContent = netTaxableIncome * 0.25;
 }
